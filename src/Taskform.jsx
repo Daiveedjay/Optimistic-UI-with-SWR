@@ -1,13 +1,57 @@
+import {
+  addTaskMutation as addSingleTask,
+  addTaskOptions,
+} from "./services/swrAPI";
+
+import toast from "react-hot-toast";
 import { useState } from "react";
 
-export default function Taskform() {
+export default function Taskform({ mutate, tasks }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [assignedTo, setAssignedTo] = useState("");
 
+  const addTaskMutation = async (e) => {
+    e.preventDefault();
+    const createdAt = new Date().toISOString(); // Get current timestamp as a string
+
+    try {
+      await mutate(
+        addSingleTask(
+          {
+            title,
+            description,
+            assignedTo,
+            completed: false,
+            createdAt,
+          },
+          tasks
+        ),
+        addTaskOptions(
+          {
+            title,
+            description,
+            assignedTo,
+            completed: false,
+            createdAt,
+          },
+          tasks
+        )
+      );
+
+      toast.success("Task added succesfully.");
+      // setTitle("");
+      // setDescription("");
+      // setAssignedTo("");
+    } catch (err) {
+      toast.error("Failed to add the new task.");
+    }
+  };
   return (
     <div className="bg-[#74a0a6] p-4 rounded-md">
-      <form className="flex flex-col w-full gap-2 ">
+      <form
+        className="flex flex-col w-full gap-2 "
+        onSubmit={(e) => addTaskMutation(e)}>
         <label htmlFor="title">
           <p className="font-bold ">Title</p>
           <input

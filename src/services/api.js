@@ -6,7 +6,7 @@ const tasksApi = axios.create({
 
 export const tasksUrlEndpoint = "/tasks";
 
-// const delay = () => new Promise((res) => setTimeout(() => res(), 1200));
+const delay = () => new Promise((res) => setTimeout(() => res(), 1200));
 
 export const fetchTasks = async () => {
   const response = await tasksApi.get(tasksUrlEndpoint);
@@ -20,8 +20,8 @@ export const addSingleTask = async ({
   assignedTo,
   createdAt,
 }) => {
-  // await delay();
-  // if (Math.random() < 0.5) throw new Error("Failed to add new task");
+  await delay();
+  if (Math.random() < 0.5) throw new Error("Failed to add new task");
   const response = await tasksApi.post(tasksUrlEndpoint, {
     title,
     description,
@@ -33,14 +33,14 @@ export const addSingleTask = async ({
 };
 
 export const updateSingleTask = async (task) => {
-  // await delay();
-  // if (Math.random() < 0.5) throw new Error("Failed to update task");
+  await delay();
+  if (Math.random() < 0.5) throw new Error("Failed to update task");
   const response = await tasksApi.patch(`${tasksUrlEndpoint}/${task.id}`, task);
   return response.data;
 };
 
 export const deleteSingleTask = async ({ id }) => {
-  // await delay();
-  // if (Math.random() < 0.5) throw new Error("Failed to update task");
+  await delay();
+  if (Math.random() < 0.5) throw new Error("Failed to update task");
   return await tasksApi.delete(`${tasksUrlEndpoint}/${id}`, id);
 };
