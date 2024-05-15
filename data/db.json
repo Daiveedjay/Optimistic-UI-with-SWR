@@ -1,0 +1,12 @@
+{
+  "tasks": [
+    {
+      "id": "d23c",
+      "title": "Write API Documentation",
+      "description": "Develop User Authentication",
+      "completed": true,
+      "assignedTo": "Tom",
+      "createdAt": "2024-05-11T18:28:51.739Z"
+    }
+  ]
+}
