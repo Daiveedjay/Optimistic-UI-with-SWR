@@ -9,7 +9,6 @@ export const tasksUrlEndpoint = "/tasks";
 // const delay = () => new Promise((res) => setTimeout(() => res(), 1200));
 
 export const fetchTasks = async () => {
-  // await delay();
   const response = await tasksApi.get(tasksUrlEndpoint);
   return response.data;
 };
